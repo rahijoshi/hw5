@@ -1,0 +1,75 @@
+:root {
+  --lavender-0: #faf8ff;
+  --lavender-1: #f3eefc;
+  --lavender-2: #e7defa;
+  --lavender-3: #cdbdf0;
+  --lavender-deep: #5a3d99;
+  --lavender-ink: #2e2545;
+
+  --paper: #fffdf7;
+  --paper-line: #e7e0d2;
+
+  --yellow: #f3b900;
+  --yellow-soft: #fff3cf;
+  --yellow-ink: #7a5600;
+
+  --ink: #2e2a3d;
+  --ink-soft: #6a637f;
+  --ink-faint: #9992ad;
+
+  --green: #2f8f5b;
+  --green-soft: #e3f5ea;
+  --red: #c24444;
+  --red-soft: #fbe8e8;
+
+  --agent-boss: #5a3d99;
+  --agent-boss-soft: #ece4fb;
+  --agent-inventory: #1f8a6f;
+  --agent-inventory-soft: #e0f5ee;
+  --agent-accounting: #a6790c;
+  --agent-accounting-soft: #fdf0d6;
+  --agent-facilities: #3e5e8c;
+  --agent-facilities-soft: #e4ecf8;
+  --agent-customer_service: #ad3d70;
+  --agent-customer_service-soft: #fbe6f0;
+
+  --shadow-card: 0 1px 2px rgba(46, 37, 69, 0.06), 0 6px 18px rgba(46, 37, 69, 0.07);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--lavender-1);
+  background-image:
+    radial-gradient(circle at 8% 6%, var(--lavender-2) 0, transparent 45%),
+    radial-gradient(circle at 95% 0%, var(--yellow-soft) 0, transparent 35%);
+  background-attachment: fixed;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 { margin: 0; font-weight: 600; color: var(--lavender-ink); }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  background: var(--lavender-1);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--lavender-3); border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }

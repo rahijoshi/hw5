@@ -1,0 +1,64 @@
+[
+  {
+    "id": 101,
+    "type": "customer_order",
+    "requester": "Tauhid Zaman",
+    "final_status": "resolved",
+    "short_outcome": "Size-S Bulldog tee was out of stock (0 on shelf against 1 requested). Restock was blocked by Bulldog Print Co's open, unpaid invoice #501 ($840). Accounting proposed paying it; a human approved. Invoice paid, cash dropped $840, ticket resolved.",
+    "agents_involved": ["boss", "inventory", "accounting", "customer_service"],
+    "agent_contributions": {
+      "boss": "Pulled the ticket, delegated to Inventory/Accounting/Customer Service, synthesized their reports, and closed the ticket out via update_ticket_status (pending_approval, then resolved after human sign-off).",
+      "inventory": "Confirmed CC-TEE-WHITE/S was at 0 on the shelf (shortfall of 1), identified Bulldog Print Co (apparel reprint, 5-day lead time) as the restock vendor, and found their invoice #501 open and blocking shipment.",
+      "accounting": "Confirmed invoice #501 was open/unpaid for $840 and that checking ($3,400) could cover it, then called make_payment (kind=invoice, ref_id=501, amount=840, account=checking) — the tool paused for human approval, exactly as designed.",
+      "customer_service": "Drafted (never sent) a board-only reply to Tauhid Zaman explaining the tee was out of stock and the restock was pending approval."
+    },
+    "human_approvals": [
+      {
+        "approved_by": "Rahi Joshi",
+        "payment": { "kind": "invoice", "ref_id": 501, "amount": 840.0, "account": "checking" },
+        "result": "Invoice #501 marked paid; cash_accounts.checking dropped from $3,400.00 to $2,560.00"
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "type": "rent_notice",
+    "requester": "Elm City Properties",
+    "final_status": "resolved",
+    "short_outcome": "Chapel Street lease rent of $2,400 was due 2026-09-02 (2 days out, not overdue). Checking had enough to cover it. Accounting proposed paying it; a human approved. Rent paid, cash dropped $2,400, ticket resolved.",
+    "agents_involved": ["boss", "facilities", "accounting"],
+    "agent_contributions": {
+      "boss": "Pulled the ticket, delegated to Facilities and Accounting, and closed the ticket out via update_ticket_status (pending_approval, then resolved after human sign-off).",
+      "facilities": "Confirmed lease 1 (Chapel Street shop, landlord Elm City Properties): $2,400/month, due 2026-09-02, not yet overdue against desk.date_today (2026-08-31).",
+      "accounting": "Confirmed checking had $2,560 after ticket 101's payment, enough to cover the $2,400 rent, then called make_payment (kind=rent, ref_id=1, amount=2400, account=checking) — paused for human approval."
+    },
+    "human_approvals": [
+      {
+        "approved_by": "Rahi Joshi",
+        "payment": { "kind": "rent", "ref_id": 1, "amount": 2400.0, "account": "checking" },
+        "result": "Rent payment recorded; cash_accounts.checking dropped from $2,560.00 to $160.00"
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "type": "price_override",
+    "requester": "Yale AI Club",
+    "final_status": "resolved",
+    "short_outcome": "20 navy hoodies size M requested with a bulk-discount ask; only 8 were on the shelf. Once ticket 101 cleared invoice #501, the shared vendor (Bulldog Print Co) was no longer blocked. The requester's actual discount ask (15% off, $49.30/unit) came back as a human-supplied reply; Accounting confirmed it still cleared cost ($27.30/unit margin). No cash left the shop for this ticket — granting a discount isn't a payment, and the system has no tool to place a new vendor purchase order, so the 12-unit restock was approved as a manual, outside-system follow-up by the human operator rather than a software-executed payment.",
+    "agents_involved": ["boss", "inventory", "accounting", "customer_service"],
+    "agent_contributions": {
+      "boss": "Delegated to Inventory, Accounting, and Customer Service across several passes as new information (the requester's price, then the human's discount approval) arrived, and closed the ticket out once there was nothing left requiring a payment.",
+      "inventory": "Confirmed 8 of 20 CC-HOOD-NAVY/M on shelf (shortfall of 12), confirmed Bulldog Print Co as the restock vendor (5-day lead time), and confirmed — once invoice #501 was paid — that the vendor no longer had any open unpaid invoice blocking a restock.",
+      "accounting": "Checked pricing ($22 unit cost / $58 list, $36 margin at list) and, once the requester's 15% discount ask ($49.30/unit) was known, confirmed it still cleared cost by $27.30/unit. Never called make_payment — correctly, since approving a discount moves no cash, and there's no tool in this system for placing a brand-new vendor purchase order.",
+      "customer_service": "Drafted (never sent) a reply to Yale AI Club asking for their target discount price, then a follow-up draft once pricing was confirmed, describing partial fulfillment (8 now, 12 to follow) and that the discount was under review."
+    },
+    "human_approvals": [
+      {
+        "approved_by": "human-operator",
+        "note": "Not a make_payment approval — no cash-moving tool exists for this decision. Supplied as ticket notes: (1) the requester's actual discount ask (15% off, $49.30/unit), since only a human could know what Yale AI Club actually wanted; (2) confirmation that approving the discount is a pricing decision, not a payment, and that the 12-unit restock would be placed manually outside this system.",
+        "result": "No cash_accounts change — checking stayed at $2,560.00 (unaffected by ticket 103) through to the final balance"
+      }
+    ]
+  }
+]

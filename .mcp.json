@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "campus-customs": {
+      "command": "/Users/Owner/rahi/Homework/hw5/mcp_server/.venv/bin/python",
+      "args": ["/Users/Owner/rahi/Homework/hw5/mcp_server/server.py"]
+    }
+  }
+}

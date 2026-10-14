@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Campus Customs — resolved board</title>
+<style>
+  :root {
+    --lavender-bg: #f4f1fb;
+    --lavender-card: #ffffff;
+    --lavender-deep: #6b4ea6;
+    --lavender-line: #ddd4f0;
+    --yellow: #f3b900;
+    --green: #1f6b43;
+    --green-bg: #e3f5ea;
+    --text: #2e2a3d;
+    --text-soft: #6a637f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--lavender-bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header {
+    padding: 28px 32px 18px;
+    background: linear-gradient(180deg, #efe9fb, var(--lavender-bg));
+    border-bottom: 2px solid var(--lavender-line);
+  }
+  header h1 { margin: 0 0 4px; font-size: 22px; color: var(--lavender-deep); }
+  header p { margin: 0; color: var(--text-soft); font-size: 14px; }
+  .flower { color: var(--yellow); }
+  main { padding: 28px 32px 56px; max-width: 980px; margin: 0 auto; }
+  .summary-bar {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .summary-chip {
+    background: var(--green-bg);
+    color: var(--green);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 13.5px;
+    font-weight: 700;
+  }
+  .shot-card {
+    background: var(--lavender-card);
+    border: 1px solid var(--lavender-line);
+    border-radius: 14px;
+    padding: 20px 24px 24px;
+    margin-bottom: 26px;
+    box-shadow: 0 1px 2px rgba(46,37,69,.06), 0 6px 18px rgba(46,37,69,.06);
+  }
+  .shot-card h2 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    color: var(--lavender-deep);
+  }
+  .shot-card .caption {
+    color: var(--text-soft);
+    font-size: 13.5px;
+    margin: 0 0 14px;
+  }
+  .shot-card img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--lavender-line);
+    display: block;
+  }
+  .outcome {
+    margin-top: 12px;
+    font-size: 14px;
+    background: #faf8ff;
+    border: 1px solid var(--lavender-line);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  code {
+    background: #f1ecfa;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 13px;
+    color: var(--lavender-deep);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="flower">&#10047;</span> Campus Customs — resolved board</h1>
+  <p>Problem 9: screenshots of the real React dashboard after all three tickets resolved, against the real <code>gpt-6-luna</code> agent team.</p>
+</header>
+
+<main>
+  <div class="summary-bar">
+    <span class="summary-chip">#101 resolved</span>
+    <span class="summary-chip">#102 resolved</span>
+    <span class="summary-chip">#103 resolved</span>
+    <span class="summary-chip" style="background:#fff3cf; color:#7a5600;">Checking: $3,400.00 &rarr; $160.00</span>
+  </div>
+
+  <div class="shot-card">
+    <h2>The board — all three resolved</h2>
+    <p class="caption">The dashboard's left-hand board, taken right after the last approval. All three tickets show the green "Resolved" pill, and the header's checking balance reads the final $160.00.</p>
+    <img src="screenshots/board-overview.jpg" alt="Campus Customs ops desk showing all three tickets marked Resolved, checking balance $160.00">
+  </div>
+
+  <div class="shot-card">
+    <h2>#101 — Bulldog tee</h2>
+    <p class="caption">Open on the desk after resolution: the facts (sku/size/qty/invoice_id), the full note trail ending in the backend's own approval line, and the top of the real agent-activity feed.</p>
+    <img src="screenshots/ticket-101.jpg" alt="Ticket 101 detail view, resolved, showing CC-TEE-WHITE size S, invoice 501, and the agent activity feed">
+    <p class="outcome">Invoice #501 ($840) paid, approved by Rahi Joshi. Checking $3,400.00 &rarr; $2,560.00.</p>
+  </div>
+
+  <div class="shot-card">
+    <h2>#102 — Rent due</h2>
+    <p class="caption">Lease 1's terms, Facilities' and Accounting's findings, and the backend's approval line, all visible in the ticket's note trail.</p>
+    <img src="screenshots/ticket-102.jpg" alt="Ticket 102 detail view, resolved, showing lease_id 1 and the agent activity feed">
+    <p class="outcome">Rent ($2,400) paid, approved by Rahi Joshi. Checking $2,560.00 &rarr; $160.00.</p>
+  </div>
+
+  <div class="shot-card">
+    <h2>#103 — Bulk hoodie discount</h2>
+    <p class="caption">The longest note trail of the three — visible here is the full real story: the agents' first pass asking for a price, the human-operator reply supplying it, Accounting's margin check, and the human-operator's final discount approval before Boss resolved it.</p>
+    <img src="screenshots/ticket-103.jpg" alt="Ticket 103 detail view, resolved, showing the full multi-round note trail ending in a discount approval">
+    <p class="outcome">15% discount ($49.30/unit) approved as a pricing decision — no payment tool involved, so checking is unaffected by this ticket.</p>
+  </div>
+</main>
+
+</body>
+</html>
