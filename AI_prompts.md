@@ -352,3 +352,21 @@ No follow-up prompt was needed. The instruction to avoid a "generic AI essay" sh
 ### Evidence of problem-by-problem work
 
 Filled in `output/desk_tickets.html`'s Reflection tab with five sections: a per-ticket grade with reasoning (B for #101's messy-but-correct delegation, A for #102's clean run, A-for-judgment/C-for-efficiency for #103's five-pass resolution), a ticket-by-ticket Actual-vs-Expected retrospective, an honest argument that ticket #102 specifically would have been strictly simpler as one agent with four tools (and that the two real Problem 9 bugs only exist *because* of the delegation mesh), three new problems answerable with zero new tooling (a no-urgency stock question, a second vendor's invoice, an actually-overdue rent ticket — each mapped to the exact tools that already handle it), and three problems the current build genuinely can't solve — including the gap ticket #103 itself surfaced (no tool to place a new vendor purchase order), a cash-only-ever-decreasing limitation (no `record_sale`-style tool exists), and the deliberate absence of any real-world-contact tool — each paired with the specific new tool and/or agent that would close the gap.
+
+## Submission — push to GitHub
+
+### Prompt(s) typed
+
+> Push the code to a public github repo hw5. Do not push your real .env to the github repo. DO include both database files under data/ (the original and your working copy) so graders can run your app easily.
+
+### What was lacking after the first prompt
+
+No follow-up prompt was needed, but this machine had zero GitHub setup at all — no `gh` CLI, no SSH keys, no stored credentials, nothing. I installed `gh` the same way as every other tool this session (official binary, user-level, no sudo), but authenticating it genuinely needs the account owner, not me — I opened the device-code sign-in flow in a visible terminal tab and asked the user to complete it in their own browser, since clicking through their own GitHub OAuth approval isn't something I can or should do on their behalf.
+
+Also had to reverse a decision from every earlier problem: `data/` had been gitignored this entire assignment (matching HW4's convention and the general rule of keeping a sandboxed working copy out of version control) — this prompt explicitly asks for the opposite, so I removed that one line from `.gitignore` rather than leaving the database files to be caught by some other rule.
+
+### Evidence of problem-by-problem work
+
+Before touching git: scanned every staged file and diff for the real `PORTKEY_API_KEY` value and for any non-empty `PORTKEY_API_KEY=` line anywhere in the tree — confirmed clean, confirmed no `.env` file (root or `backend/`) was ever staged. Added three files the course's expected file layout calls for that weren't needed until now: a root `README.md` (setup, and why there are two separate Python virtual environments rather than one — a real dependency conflict between `mcp<2` and `pydantic-ai-slim[mcp]`'s own newer `mcp` dependency, not arbitrary complexity), a root `requirements.txt` mirroring the backend's, and a root `.env.example`. Flagged and fixed one real portability problem before anyone else could hit it: `.mcp.json` has this machine's absolute paths baked in, so a plain `git clone` elsewhere would silently point at a path that doesn't exist — wrote and tested (in a scratch directory, not the real repo) a one-line Python snippet that regenerates it from the clone's own real path, and put it in the README as a required setup step.
+
+Created the repository and pushed with `gh repo create hw5 --public --source=. --remote=origin --push` once authenticated. Repo: **https://github.com/rahijoshi/hw5** (also saved to `output/github_url.txt`, per the expected file layout).
