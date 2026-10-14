@@ -27,12 +27,17 @@ Regenerate it for your own clone:
 
 ```bash
 python3 - <<'EOF'
-import json, pathlib
-p = pathlib.Path(".mcp.json")
-data = json.loads(p.read_text())
-data["mcpServers"]["campus-customs"]["command"] = str(pathlib.Path("mcp_server/.venv/bin/python").resolve())
-data["mcpServers"]["campus-customs"]["args"] = [str(pathlib.Path("mcp_server/server.py").resolve())]
-p.write_text(json.dumps(data, indent=2) + "\n")
+import json, os
+p = ".mcp.json"
+data = json.load(open(p))
+# os.path.abspath, not Path.resolve() — resolve() follows the venv's own
+# python symlink out to the bare interpreter it points at, which has none
+# of mcp_server/requirements.txt installed. abspath keeps the symlink
+# itself, which is what makes python pick up this venv's site-packages.
+data["mcpServers"]["campus-customs"]["command"] = os.path.abspath("mcp_server/.venv/bin/python")
+data["mcpServers"]["campus-customs"]["args"] = [os.path.abspath("mcp_server/server.py")]
+json.dump(data, open(p, "w"), indent=2)
+open(p, "a").write("\n")
 EOF
 ```
 
